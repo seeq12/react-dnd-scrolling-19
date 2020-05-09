@@ -1,6 +1,10 @@
-# react-dnd-scrollzone
+# react-dnd-scrolling
 
 Cross browser compatible scrolling containers for drag and drop interactions.
+
+### Build Status
+
+![CI](https://github.com/TechStark/react-dnd-scrolling/workflows/CI/badge.svg)
 
 ### [Basic Example](./examples/basic)
 
