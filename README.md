@@ -2,6 +2,8 @@
 
 Cross browser compatible scrolling containers for drag and drop interactions.
 
+Works with `react-dnd@10.x`.
+
 ### Build Status
 
 ![CI](https://github.com/TechStark/react-dnd-scrolling/workflows/CI/badge.svg)
