@@ -10,7 +10,7 @@ Cross browser compatible scrolling containers for drag and drop interactions.
 
 ```js
 import React, { Component } from 'react';
-import { DragDropContextProvider } from 'react-dnd';
+import { DndProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import withScrolling from 'react-dnd-scrolling';
 import DragItem from './DragItem';
@@ -23,13 +23,13 @@ const ITEMS = [1,2,3,4,5,6,7,8,9,10];
 export default class App extends Component {
   render() {
     return (
-      <DragDropContextProvider backend={HTML5Backend}>
+      <DndProvider backend={HTML5Backend}>
         <ScrollingComponent className="App">
           {ITEMS.map(n => (
             <DragItem key={n} label={`Item ${n}`} />
           ))}
         </ScrollingComponent>
-      </DragDropContextProvider>
+      </DndProvider>
     );
   }
 }
@@ -41,7 +41,7 @@ Note: You should replace the original `div` you would like to make scrollable wi
 
 ```js
 import React, { Component } from 'react';
-import { DragDropContextProvider } from 'react-dnd';
+import { DndProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import withScrolling, { createHorizontalStrength, createVerticalStrength } from 'react-dnd-scrolling';
 import DragItem from './DragItem';
@@ -72,7 +72,7 @@ function vStrength(box, point) {
 
 export default App(props) {
   return (
-    <DragDropContextProvider backend={HTML5Backend}>
+    <DndProvider backend={HTML5Backend}>
       <ScrollingComponent
         className="App"
         verticalStrength={vStrength}
@@ -82,7 +82,7 @@ export default App(props) {
           <DragItem key={n} label={`Item ${n}`} />
         ))}
       </ScrollingComponent>
-    </DragDropContextProvider>
+    </DndProvider>
   );
 }
 ```
@@ -94,7 +94,7 @@ Since react-dnd-scrolling utilizes the Higher Order Components (HOC) pattern, dr
 
 ```js
 import React from 'react';
-import { DragDropContextProvider } from 'react-dnd';
+import { DndProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import withScrolling from 'react-dnd-scrolling';
 import { List } from 'react-virtualized';
@@ -109,7 +109,7 @@ const ITEMS = Array.from(Array(1000)).map((e,i)=> `Item ${i}`);
 
 export default App(props) {
   return (
-    <DragDropContextProvider backend={HTML5Backend}>
+    <DndProvider backend={HTML5Backend}>
       <ScrollingVirtualList
         className="App"
         height={600}
@@ -126,7 +126,7 @@ export default App(props) {
           )
         }
        />
-    </DragDropContextProvider>
+    </DndProvider>
   );
 }
 ```

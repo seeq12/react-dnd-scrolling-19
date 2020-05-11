@@ -1,6 +1,6 @@
 {
   "name": "react-dnd-scrolling",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0",
   "description": "A cross browser solution to scrolling during drag and drop.",
   "main": "lib/index.js",
   "scripts": {
@@ -26,9 +26,7 @@
     "drop",
     "scroll",
     "dnd",
-    "drag and drop",
-    "polyfill",
-    "auto"
+    "drag and drop"
   ],
   "author": {
     "name": "Nicholas Clawson",
