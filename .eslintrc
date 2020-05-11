@@ -24,6 +24,7 @@
     "react/jsx-filename-extension": "off",
     "react/jsx-props-no-spreading": "off",
     "react/no-find-dom-node": "off",
+    "react/prefer-stateless-function": "off",
     "react/sort-comp": "off",
     "react/static-property-placement": "off"
   }

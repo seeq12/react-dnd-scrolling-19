@@ -4,17 +4,12 @@ import { DragSource } from 'react-dnd';
 import './DragItem.css';
 
 class DragItem extends PureComponent {
-
   static propTypes = {
-    label: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired
   };
 
   render() {
-    return this.props.dragSource(
-      <div className="DragItem">
-        {this.props.label}
-      </div>
-    );
+    return this.props.dragSource(<div className="DragItem">{this.props.label}</div>);
   }
 }
 
@@ -22,10 +17,10 @@ export default DragSource(
   'foo',
   {
     beginDrag() {
-      return {}
+      return {};
     }
   },
-  (connect) => ({
-    dragSource: connect.dragSource(),
+  connect => ({
+    dragSource: connect.dragSource()
   })
 )(DragItem);
