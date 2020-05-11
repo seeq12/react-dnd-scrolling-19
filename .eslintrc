@@ -1,13 +1,30 @@
 {
-    "parser": "babel-eslint",
-    "extends": "airbnb",
+  "env": {
+    "es6": true,
+    "browser": true,
+    "commonjs": true,
+    "node": true,
+    "jest": true
+  },
+  "parser": "babel-eslint",
+  "settings": {
+    "ecmascript": 6
+  },
+  "plugins": ["react", "import"],
+  "extends": ["airbnb", "plugin:prettier/recommended", "prettier/react"],
 
-    "ecmaFeatures": {
-        "modules": true
-    },
-
-    "rules": {
-        "no-unused-vars": [0],
-        "react/prop-types": [0]
-    }
+  "rules": {
+    "import/no-unresolved": "warn",
+    "no-else-return": "off",
+    "no-plusplus": "off",
+    "no-unused-vars": "warn",
+    "react/prop-types": "warn",
+    "react/destructuring-assignment": "off",
+    "react/forbid-prop-types": "off",
+    "react/jsx-filename-extension": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/no-find-dom-node": "off",
+    "react/sort-comp": "off",
+    "react/static-property-placement": "off"
+  }
 }

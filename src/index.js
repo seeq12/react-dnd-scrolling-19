@@ -18,7 +18,7 @@ export function createHorizontalStrength(_buffer) {
     if (inBox) {
       if (point.x < x + buffer) {
         return (point.x - x - buffer) / buffer;
-      } else if (point.x > (x + w - buffer)) {
+      } else if (point.x > x + w - buffer) {
         return -(x + w - point.x - buffer) / buffer;
       }
     }
@@ -36,7 +36,7 @@ export function createVerticalStrength(_buffer) {
     if (inBox) {
       if (point.y < y + buffer) {
         return (point.y - y - buffer) / buffer;
-      } else if (point.y > (y + h - buffer)) {
+      } else if (point.y > y + h - buffer) {
         return -(y + h - point.y - buffer) / buffer;
       }
     }
@@ -49,28 +49,26 @@ export const defaultHorizontalStrength = createHorizontalStrength(DEFAULT_BUFFER
 
 export const defaultVerticalStrength = createVerticalStrength(DEFAULT_BUFFER);
 
-
 export default function createScrollingComponent(WrappedComponent) {
   class ScrollingComponent extends Component {
-
     static displayName = `Scrolling(${getDisplayName(WrappedComponent)})`;
 
     static propTypes = {
       onScrollChange: PropTypes.func,
       verticalStrength: PropTypes.func,
       horizontalStrength: PropTypes.func,
-      strengthMultiplier: PropTypes.number,
+      strengthMultiplier: PropTypes.number
     };
 
     static defaultProps = {
       onScrollChange: noop,
       verticalStrength: defaultVerticalStrength,
       horizontalStrength: defaultHorizontalStrength,
-      strengthMultiplier: 30,
+      strengthMultiplier: 30
     };
 
     static contextTypes = {
-      dragDropManager: PropTypes.object,
+      dragDropManager: PropTypes.object
     };
 
     constructor(props, ctx) {
@@ -91,10 +89,9 @@ export default function createScrollingComponent(WrappedComponent) {
       // have to attach the listeners to the body
       window.document.body.addEventListener('touchmove', this.handleEvent);
 
-      this.clearMonitorSubscription = this.context
-          .dragDropManager
-          .getMonitor()
-          .subscribeToStateChange(() => this.handleMonitorChange());
+      this.clearMonitorSubscription = this.context.dragDropManager
+        .getMonitor()
+        .subscribeToStateChange(() => this.handleMonitorChange());
     }
 
     componentWillUnmount() {
@@ -104,12 +101,12 @@ export default function createScrollingComponent(WrappedComponent) {
       this.stopScrolling();
     }
 
-    handleEvent = (evt) => {
+    handleEvent = evt => {
       if (this.dragging && !this.attached) {
         this.attach();
         this.updateScrolling(evt);
       }
-    }
+    };
 
     handleMonitorChange() {
       const isDragging = this.context.dragDropManager.getMonitor().isDragging();
@@ -136,20 +133,29 @@ export default function createScrollingComponent(WrappedComponent) {
 
     // Update scaleX and scaleY every 100ms or so
     // and start scrolling if necessary
-    updateScrolling = throttle(evt => {
-      const { left: x, top: y, width: w, height: h } = this.container.getBoundingClientRect();
-      const box = { x, y, w, h };
-      const coords = getCoords(evt);
+    updateScrolling = throttle(
+      evt => {
+        const {
+          left: x,
+          top: y,
+          width: w,
+          height: h
+        } = this.container.getBoundingClientRect();
+        const box = { x, y, w, h };
+        const coords = getCoords(evt);
 
-      // calculate strength
-      this.scaleX = this.props.horizontalStrength(box, coords);
-      this.scaleY = this.props.verticalStrength(box, coords);
+        // calculate strength
+        this.scaleX = this.props.horizontalStrength(box, coords);
+        this.scaleY = this.props.verticalStrength(box, coords);
 
-      // start scrolling if we need to
-      if (!this.frame && (this.scaleX || this.scaleY)) {
-        this.startScrolling();
-      }
-    }, 100, { trailing: false })
+        // start scrolling if we need to
+        if (!this.frame && (this.scaleX || this.scaleY)) {
+          this.startScrolling();
+        }
+      },
+      100,
+      { trailing: false }
+    );
 
     startScrolling() {
       let i = 0;
@@ -174,23 +180,23 @@ export default function createScrollingComponent(WrappedComponent) {
             scrollWidth,
             scrollHeight,
             clientWidth,
-            clientHeight,
+            clientHeight
           } = container;
 
           const newLeft = scaleX
-            ? container.scrollLeft = intBetween(
-              0,
-              scrollWidth - clientWidth,
-              scrollLeft + scaleX * strengthMultiplier
-            )
+            ? (container.scrollLeft = intBetween(
+                0,
+                scrollWidth - clientWidth,
+                scrollLeft + scaleX * strengthMultiplier
+              ))
             : scrollLeft;
 
           const newTop = scaleY
-            ? container.scrollTop = intBetween(
-              0,
-              scrollHeight - clientHeight,
-              scrollTop + scaleY * strengthMultiplier
-            )
+            ? (container.scrollTop = intBetween(
+                0,
+                scrollHeight - clientHeight,
+                scrollTop + scaleY * strengthMultiplier
+              ))
             : scrollTop;
 
           onScrollChange(newLeft, newTop);
@@ -220,12 +226,14 @@ export default function createScrollingComponent(WrappedComponent) {
         horizontalStrength,
         onScrollChange,
 
-        ...props,
+        ...props
       } = this.props;
 
       return (
         <WrappedComponent
-          ref={(ref) => { this.wrappedInstance = ref; }}
+          ref={ref => {
+            this.wrappedInstance = ref;
+          }}
           {...props}
         />
       );
