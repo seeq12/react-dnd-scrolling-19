@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { DndContext } from 'react-dnd';
 import { findDOMNode } from 'react-dom';
 import throttle from 'lodash.throttle';
 import raf from 'raf';
@@ -67,9 +68,7 @@ export default function createScrollingComponent(WrappedComponent) {
       strengthMultiplier: 30
     };
 
-    static contextTypes = {
-      dragDropManager: PropTypes.object
-    };
+    static contextType = DndContext;
 
     constructor(props, ctx) {
       super(props, ctx);
