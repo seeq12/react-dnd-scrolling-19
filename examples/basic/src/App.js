@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContextProvider } from 'react-dnd';
-import withScrolling from 'react-dnd-scrollzone';
+import withScrolling from 'react-dnd-scrolling';
 import DragItem from './DragItem';
 import './App.css';
 

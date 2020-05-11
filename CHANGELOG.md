@@ -24,13 +24,13 @@
 
 ##### Before (v2)
 ```js
-import Scrollzone from 'react-dnd-scrollzone';
+import Scrollzone from 'react-dnd-scrolling';
 const zone = <Scrollzone />;
 ```
 
 ##### After (v3)
 ```js
-import withScrolling from 'react-dnd-scrollzone';
+import withScrolling from 'react-dnd-scrolling';
 const Scrollzone = withScrolling('div');
 const zone = <Scrollzone />;
 ```
@@ -44,13 +44,13 @@ const zone = <Scrollzone />;
 
 ##### Before (v1)
 ```js
-import Scrollzone from 'react-dnd-scrollzone';
+import Scrollzone from 'react-dnd-scrolling';
 const zone = <Scrollzone buffer={300} />;
 ```
 
 ##### After (v2)
 ```js
-import Scrollzone, { createVerticalStrength, createHorizontalStrength } from 'react-dnd-scrollzone';
+import Scrollzone, { createVerticalStrength, createHorizontalStrength } from 'react-dnd-scrolling';
 const vStrength = createVerticalStrength(300);
 const hStrength = createHorizontalStrength(300);
 const zone = <Scrollzone verticalStrength={vStrength} horizontalStrength={hStrength} />;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TouchBackend from 'react-dnd-touch-backend';
 import { DragDropContextProvider } from 'react-dnd';
-import withScrolling from 'react-dnd-scrollzone';
+import withScrolling from 'react-dnd-scrolling';
 import DragItem from './DragItem';
 import DragPreview from './DragPreview';
 import './App.css';

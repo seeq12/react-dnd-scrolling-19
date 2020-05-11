@@ -12,7 +12,7 @@ Cross browser compatible scrolling containers for drag and drop interactions.
 import React, { Component } from 'react';
 import { DragDropContextProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-import withScrolling from 'react-dnd-scrollzone';
+import withScrolling from 'react-dnd-scrolling';
 import DragItem from './DragItem';
 import './App.css';
 
@@ -43,7 +43,7 @@ Note: You should replace the original `div` you would like to make scrollable wi
 import React, { Component } from 'react';
 import { DragDropContextProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-import withScrolling, { createHorizontalStrength, createVerticalStrength } from 'react-dnd-scrollzone';
+import withScrolling, { createHorizontalStrength, createVerticalStrength } from 'react-dnd-scrolling';
 import DragItem from './DragItem';
 import './App.css';
 
@@ -90,13 +90,13 @@ Note: You should replace the original `div` you would like to make scrollable wi
 
 ### Virtualized Example
 
-Since react-dnd-scrollzone utilizes the Higher Order Components (HOC) pattern, drag and drop scrolling behaviour can easily be added to existing components. For example to speedup huge lists by using [react-virtualized](https://github.com/bvaughn/react-virtualized) for a windowed view where only the visible rows are rendered:
+Since react-dnd-scrolling utilizes the Higher Order Components (HOC) pattern, drag and drop scrolling behaviour can easily be added to existing components. For example to speedup huge lists by using [react-virtualized](https://github.com/bvaughn/react-virtualized) for a windowed view where only the visible rows are rendered:
 
 ```js
 import React from 'react';
 import { DragDropContextProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-import withScrolling from 'react-dnd-scrollzone';
+import withScrolling from 'react-dnd-scrolling';
 import { List } from 'react-virtualized';
 import DragItem from './DragItem';
 import './App.css';
@@ -171,7 +171,7 @@ These allow you to create linearly scaling strength functions with a sensitivity
 ##### Example
 
 ```js
-import withScrolling, { createVerticalStrength, createHorizontalStrength } from 'react-dnd-scrollzone';
+import withScrolling, { createVerticalStrength, createHorizontalStrength } from 'react-dnd-scrolling';
 
 const Scrollzone = withScrolling('ul');
 const vStrength = createVerticalStrength(500);
