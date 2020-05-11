@@ -13,7 +13,7 @@ const ITEMS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 export default class App extends Component {
   render() {
     return (
-      <DndProvider backend={TouchBackend({ enableMouseEvents: true })}>
+      <DndProvider backend={TouchBackend} options={{ enableMouseEvents: true }}>
         <ScrollingComponent className="App">
           {ITEMS.map(n => (
             <DragItem key={n} label={`Item ${n}`} />
