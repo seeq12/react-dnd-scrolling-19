@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TouchBackend from 'react-dnd-touch-backend';
+import { TouchBackend } from 'react-dnd-touch-backend';
 import { DndProvider } from 'react-dnd';
 import withScrolling from 'react-dnd-scrolling';
 import DragItem from './DragItem';

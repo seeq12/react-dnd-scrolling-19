@@ -17,7 +17,7 @@ npm install react-dnd-scrolling
 ```js
 import React, { Component } from 'react';
 import { DndProvider } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import withScrolling from 'react-dnd-scrolling';
 import DragItem from './DragItem';
 import './App.css';
@@ -48,7 +48,7 @@ Note: You should replace the original `div` you would like to make scrollable wi
 ```js
 import React, { Component } from 'react';
 import { DndProvider } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import withScrolling, { createHorizontalStrength, createVerticalStrength } from 'react-dnd-scrolling';
 import DragItem from './DragItem';
 import './App.css';
@@ -101,7 +101,7 @@ Since react-dnd-scrolling utilizes the Higher Order Components (HOC) pattern, dr
 ```js
 import React from 'react';
 import { DndProvider } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import withScrolling from 'react-dnd-scrolling';
 import { List } from 'react-virtualized';
 import DragItem from './DragItem';

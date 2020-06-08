@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import HTML5Backend from 'react-dnd-html5-backend';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
 import withScrolling from 'react-dnd-scrolling';
 import DragItem from './DragItem';
