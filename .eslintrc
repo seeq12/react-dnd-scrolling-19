@@ -11,7 +11,7 @@
     "ecmascript": 6
   },
   "plugins": ["react", "import"],
-  "extends": ["airbnb", "plugin:prettier/recommended", "prettier/react"],
+  "extends": ["airbnb", "plugin:prettier/recommended"],
 
   "rules": {
     "import/no-unresolved": "warn",
