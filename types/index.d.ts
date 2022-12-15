@@ -8,7 +8,12 @@ export type BoxType = {
   h: number;
 };
 
-export type StrengthFuncton = (box: BoxType, point: number) => number;
+interface Point {
+  x: number;
+  y: number;
+}
+
+export type StrengthFuncton = (box: BoxType, point: Point) => number;
 
 export function useDndScrolling(
   ref: React.Ref<any>,
@@ -27,12 +32,12 @@ export function createVerticalStrength(_buffer: number): StrengthFuncton;
 export default function withScrolling<
   T extends keyof JSX.IntrinsicElements | React.JSXElementConstructor<T>,
   P = React.ComponentProps<T>
-  >(
+>(
   component: T
 ): React.ComponentType<
   P & {
-  verticalStrength?: StrengthFuncton;
-  horizontalStrength?: StrengthFuncton;
-  dragDropManager?: DragDropManager;
-}
-  >;
+    verticalStrength?: StrengthFuncton;
+    horizontalStrength?: StrengthFuncton;
+    dragDropManager?: DragDropManager;
+  }
+>;
