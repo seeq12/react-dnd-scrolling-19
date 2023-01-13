@@ -14,23 +14,24 @@ Works with `react-dnd` `10.x`, `11.x`, `14.x`, `15.x`, `16.x`.
 npm install react-dnd-scrolling
 ```
 
+- Using `withScrolling`
+
 ```js
 import React, { Component } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import withScrolling from 'react-dnd-scrolling';
 import DragItem from './DragItem';
-import './App.css';
 
 const ScrollingComponent = withScrolling('div');
 
-const ITEMS = [1,2,3,4,5,6,7,8,9,10];
+const ITEMS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 export default class App extends Component {
   render() {
     return (
       <DndProvider backend={HTML5Backend}>
-        <ScrollingComponent className="App">
+        <ScrollingComponent className="container">
           {ITEMS.map(n => (
             <DragItem key={n} label={`Item ${n}`} />
           ))}
@@ -43,28 +44,33 @@ export default class App extends Component {
 
 Note: You should replace the original `div` you would like to make scrollable with the `ScrollingComponent`.
 
-### useDndScrolling
+- Using `useDndScrolling` hook
+
 ```js
-import React, { Component, useRef } from 'react';
+import React, { useRef } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { useDndScrolling } from 'react-dnd-scrolling';
 import DragItem from './DragItem';
-import './App.css';
 
-const ITEMS = [1,2,3,4,5,6,7,8,9,10];
+const ITEMS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-export default function App() {
+const TestPage = () => {
   const ref = useRef();
   useDndScrolling(ref);
+  return (
+    <div ref={ref} className="container">
+      {ITEMS.map(n => (
+        <DragItem key={n} label={`Item ${n}`} />
+      ))}
+    </div>
+  );
+};
 
+export default function App() {
   return (
     <DndProvider backend={HTML5Backend}>
-      <div ref={ref} className="App">
-        {ITEMS.map(n => (
-          <DragItem key={n} label={`Item ${n}`} />
-        ))}
-      </div>
+      <TestPage />
     </DndProvider>
   );
 }
@@ -119,6 +125,7 @@ export default App(props) {
   );
 }
 ```
+
 Note: You should replace the original `div` you would like to make scrollable with the `ScrollingComponent`.
 
 ### Virtualized Example
@@ -164,7 +171,6 @@ export default App(props) {
 }
 ```
 
-
 ### API
 
 #### `withScrolling`
@@ -183,19 +189,21 @@ const ScrollZone = withScrolling(String|Component);
   {children}
 </Scrollzone>
 ```
+
 Apply the withScrolling function to any html-identifier ("div", "ul" etc) or react component to add drag and drop scrolling behaviour.
 
- * `horizontalStrength` a function that returns the strength of the horizontal scroll direction
- * `verticalStrength` - a function that returns the strength of the vertical scroll direction
- * `strengthMultiplier` - strength multiplier, play around with this (default 30)
- * `onScrollChange` - a function that is called when `scrollLeft` or `scrollTop` of the component are changed. Called with those two arguments in that order.
+- `horizontalStrength` a function that returns the strength of the horizontal scroll direction
+- `verticalStrength` - a function that returns the strength of the vertical scroll direction
+- `strengthMultiplier` - strength multiplier, play around with this (default 30)
+- `onScrollChange` - a function that is called when `scrollLeft` or `scrollTop` of the component are changed. Called with those two arguments in that order.
 
 The strength functions are both called with two arguments. An object representing the rectangle occupied by the Scrollzone, and an object representing the coordinates of mouse.
 
 They should return a value between -1 and 1.
- * Negative values scroll up or left.
- * Positive values scroll down or right.
- * 0 stops all scrolling.
+
+- Negative values scroll up or left.
+- Positive values scroll down or right.
+- 0 stops all scrolling.
 
 #### `createVerticalStrength(buffer)` and `createHorizontalStrength(buffer)`
 
@@ -204,7 +212,10 @@ These allow you to create linearly scaling strength functions with a sensitivity
 ##### Example
 
 ```js
-import withScrolling, { createVerticalStrength, createHorizontalStrength } from 'react-dnd-scrolling';
+import withScrolling, {
+  createVerticalStrength,
+  createHorizontalStrength
+} from 'react-dnd-scrolling';
 
 const Scrollzone = withScrolling('ul');
 const vStrength = createVerticalStrength(500);
@@ -213,8 +224,6 @@ const hStrength = createHorizontalStrength(300);
 // zone will scroll when the cursor drags within
 // 500px of the top/bottom and 300px of the left/right
 const zone = (
-  <Scrollzone verticalStrength={vStrength} horizontalStrength={hStrength}>
-
-  </Scrollzone>
+  <Scrollzone verticalStrength={vStrength} horizontalStrength={hStrength}></Scrollzone>
 );
 ```
