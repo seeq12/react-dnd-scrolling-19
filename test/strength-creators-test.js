@@ -1,4 +1,4 @@
-import { createHorizontalStrength, createVerticalStrength } from '../src/index.js';
+import { createHorizontalStrength, createVerticalStrength } from '../src/index';
 
 describe('strength functions', function () {
   const hFn = createHorizontalStrength(150);

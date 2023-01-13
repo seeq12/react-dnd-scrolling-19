@@ -5,7 +5,7 @@ import { DndContext } from 'react-dnd';
 import throttle from 'lodash.throttle';
 import raf from 'raf';
 import hoist from 'hoist-non-react-statics';
-import { noop, intBetween, getCoords } from './util.js';
+import { noop, intBetween, getCoords } from './util';
 
 const DEFAULT_BUFFER = 150;
 
@@ -77,7 +77,7 @@ export function useDndScrolling(componentRef, passedOptions) {
 
   if (!dragDropManager) {
     throw new Error(
-      'Unable to get dragDropManager from context. Provide DnDContext or pass dragDropManager via options to useDndScrolling.'
+      'Unable to get dragDropManager from context. Wrap this in <DndProvider> or pass dragDropManager via options to useDndScrolling.'
     );
   }
 
@@ -133,7 +133,8 @@ export function useDndScrolling(componentRef, passedOptions) {
     };
 
     tick();
-  }, []);
+    // eslint-disable-next-line no-use-before-define
+  }, [componentRef, props, stopScrolling]);
 
   // Update scaleX and scaleY every 100ms or so
   // and start scrolling if necessary
@@ -166,20 +167,20 @@ export function useDndScrolling(componentRef, passedOptions) {
         100,
         { trailing: false }
       ),
-    []
+    [componentRef, props, startScrolling]
   );
 
   const attach = useCallback(() => {
     attached.current = true;
     window.document.body.addEventListener('dragover', updateScrolling);
     window.document.body.addEventListener('touchmove', updateScrolling);
-  }, []);
+  }, [updateScrolling]);
 
   const detach = useCallback(() => {
     attached.current = false;
     window.document.body.removeEventListener('dragover', updateScrolling);
     window.document.body.removeEventListener('touchmove', updateScrolling);
-  }, []);
+  }, [updateScrolling]);
 
   const stopScrolling = React.useCallback(() => {
     detach();
@@ -190,7 +191,7 @@ export function useDndScrolling(componentRef, passedOptions) {
       raf.cancel(frame.current);
       frame.current = null;
     }
-  }, []);
+  }, [detach]);
 
   const handleEvent = useCallback(
     evt => {
@@ -199,7 +200,7 @@ export function useDndScrolling(componentRef, passedOptions) {
         updateScrolling(evt);
       }
     },
-    [dragDropManager]
+    [attach, updateScrolling]
   );
 
   useEffect(() => {
@@ -209,25 +210,24 @@ export function useDndScrolling(componentRef, passedOptions) {
       dragging.current = false;
       stopScrolling();
     }
-  }, [monitor.isDragging()]);
+  }, [monitor, stopScrolling]);
 
   useEffect(() => {
     if (!componentRef.current) {
       return () => {};
     }
-    componentRef.current.addEventListener('dragover', handleEvent);
+    const container = componentRef.current;
+    container.addEventListener('dragover', handleEvent);
     // touchmove events don't seem to work across siblings, so we unfortunately
     // have to attach the listeners to the body
     window.document.body.addEventListener('touchmove', handleEvent);
 
     return () => {
-      if (componentRef.current) {
-        componentRef.current.removeEventListener('dragover', handleEvent);
-      }
+      container.removeEventListener('dragover', handleEvent);
       window.document.body.removeEventListener('touchmove', handleEvent);
       stopScrolling();
     };
-  }, [dragDropManager]);
+  }, [componentRef, dragDropManager, handleEvent, stopScrolling]);
 }
 
 export default function createScrollingComponent(WrappedComponent) {
