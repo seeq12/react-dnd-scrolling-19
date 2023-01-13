@@ -1,4 +1,4 @@
-import { intBetween } from '../src/util';
+import { intBetween } from '../src/util.js';
 
 describe('private intBetween()', () => {
   it('should return val if it is an int between min and max', () => {

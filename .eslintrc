@@ -20,6 +20,10 @@
     "plugin:react-hooks/recommended"
   ],
   "rules": {
+    "import/extensions": [
+      "error",
+      "always"
+    ],
     "func-names": "off",
     "no-else-return": "off",
     "no-plusplus": "off",
