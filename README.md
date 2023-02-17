@@ -14,6 +14,10 @@ Works with `react-dnd` `10.x`, `11.x`, `14.x`, `15.x`, `16.x`.
 - [Live Demo: Mobile](https://codesandbox.io/s/react-dnd-scrolling-mobile-demo-r35bxf)
 - [Code Examples](https://github.com/TechStark/react-dnd-scrolling-examples)
 
+| [Basic Example](https://codesandbox.io/s/react-dnd-scrolling-demo-vnp66) | [Mobile Example](https://codesandbox.io/s/react-dnd-scrolling-mobile-demo-r35bxf) |
+| ------------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
+| <img src="./examples/recording-basic.gif" style="max-height: 500px;">    | <img src="./examples/recording-mobile.gif" style="max-height: 500px;">            |
+
 ### Get Started
 
 ```bash
