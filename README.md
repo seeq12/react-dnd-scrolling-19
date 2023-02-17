@@ -8,7 +8,13 @@ Works with `react-dnd` `10.x`, `11.x`, `14.x`, `15.x`, `16.x`.
 
 ![CI](https://github.com/TechStark/react-dnd-scrolling/workflows/CI/badge.svg)
 
-### [Basic Example](./examples/basic) ([Live Demo](https://codesandbox.io/s/react-dnd-scrolling-demo-vnp66))
+### Examples
+
+- [Live Demo: Basic](https://codesandbox.io/s/react-dnd-scrolling-demo-vnp66)
+- [Live Demo: Mobile](https://codesandbox.io/s/react-dnd-scrolling-mobile-demo-r35bxf)
+- [Code Examples](https://github.com/TechStark/react-dnd-scrolling-examples)
+
+### Get Started
 
 ```bash
 npm install react-dnd-scrolling
