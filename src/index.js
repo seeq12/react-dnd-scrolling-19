@@ -70,17 +70,18 @@ export function useDndScrolling(componentRef, passedOptions) {
     );
   }
 
+  const containerElement = componentRef.current;
   useEffect(() => {
-    if (!componentRef.current) {
+    if (!containerElement) {
       return () => {};
     }
     const options = defaults(passedOptions, defaultOptions);
-    const monitor = new ScrollingMonitor(dragDropManager, componentRef.current, options);
+    const monitor = new ScrollingMonitor(dragDropManager, containerElement, options);
     monitor.start();
     return () => {
       monitor.stop();
     };
-  }, [componentRef, dragDropManager, passedOptions]);
+  }, [containerElement, dragDropManager, passedOptions]);
 }
 
 export default function createScrollingComponent(WrappedComponent) {
