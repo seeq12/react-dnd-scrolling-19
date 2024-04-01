@@ -69,18 +69,18 @@ export function useDndScrolling(componentRef, passedOptions) {
     );
   }
 
-  const containerElement = componentRef.current;
   useEffect(() => {
-    if (!containerElement) {
+    if (!componentRef.current) {
       return () => {};
     }
     const options = { ...defaultOptions, ...passedOptions };
-    const monitor = new ScrollingMonitor(dragDropManager, containerElement, options);
+    const monitor = new ScrollingMonitor(dragDropManager, componentRef.current, options);
     monitor.start();
     return () => {
       monitor.stop();
     };
-  }, [containerElement, dragDropManager, passedOptions]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [componentRef.current, dragDropManager, passedOptions]);
 }
 
 export default function createScrollingComponent(WrappedComponent) {
