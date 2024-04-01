@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useContext } from 'react';
 import PropTypes from 'prop-types';
-import defaults from 'defaults';
 import { DndContext } from 'react-dnd';
 import hoist from 'hoist-non-react-statics';
 import { noop } from './util.js';
@@ -75,7 +74,7 @@ export function useDndScrolling(componentRef, passedOptions) {
     if (!containerElement) {
       return () => {};
     }
-    const options = defaults(passedOptions, defaultOptions);
+    const options = { ...defaultOptions, ...passedOptions };
     const monitor = new ScrollingMonitor(dragDropManager, containerElement, options);
     monitor.start();
     return () => {
