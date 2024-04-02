@@ -6,11 +6,7 @@
   "main": "lib/cjs/index.js",
   "types": "types/index.d.ts",
   "exports": {
-    "util": {
-      "import": "./lib/esm/util.js",
-      "require": "./lib/cjs/util.js"
-    },
-    "default": {
+    ".": {
       "import": "./lib/esm/index.js",
       "require": "./lib/cjs/index.js"
     }
