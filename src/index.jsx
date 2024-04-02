@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { DndContext } from 'react-dnd';
 import hoist from 'hoist-non-react-statics';
-import { noop } from './util.js';
-import ScrollingMonitor from './ScrollingMonitor.js';
+import { noop } from './util';
+import ScrollingMonitor from './ScrollingMonitor';
 
 const DEFAULT_BUFFER = 150;
 

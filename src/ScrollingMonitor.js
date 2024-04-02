@@ -1,6 +1,6 @@
 import throttle from 'lodash.throttle';
 import raf from 'raf';
-import { intBetween, getCoords } from './util.js';
+import { intBetween, getCoords } from './util';
 
 export default class ScrollingMonitor {
   constructor(dragDropManager, container, options) {

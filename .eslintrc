@@ -10,25 +10,12 @@
   "settings": {
     "ecmascript": 6
   },
-  "plugins": [
-    "react",
-    "import"
-  ],
-  "extends": [
-    "airbnb",
-    "plugin:prettier/recommended",
-    "plugin:react-hooks/recommended"
-  ],
+  "plugins": ["react", "import"],
+  "extends": ["airbnb", "plugin:prettier/recommended", "plugin:react-hooks/recommended"],
   "rules": {
-    "import/extensions": [
-      "error",
-      "always"
-    ],
     "func-names": "off",
     "no-else-return": "off",
     "no-plusplus": "off",
-    "react/forbid-prop-types": "off",
-    "react/jsx-filename-extension": "off",
     "react/jsx-props-no-spreading": "off"
   }
 }
