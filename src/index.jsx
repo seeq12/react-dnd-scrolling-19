@@ -61,7 +61,7 @@ const defaultOptions = {
   strengthMultiplier: 30
 };
 
-export function useDndScrolling(componentRef, passedOptions) {
+export function useDndScrolling(componentRef, scrollingOptions) {
   const { dragDropManager } = useContext(DndContext);
   if (!dragDropManager) {
     throw new Error(
@@ -73,14 +73,14 @@ export function useDndScrolling(componentRef, passedOptions) {
     if (!componentRef.current) {
       return () => {};
     }
-    const options = { ...defaultOptions, ...passedOptions };
+    const options = { ...defaultOptions, ...scrollingOptions };
     const monitor = new ScrollingMonitor(dragDropManager, componentRef.current, options);
     monitor.start();
     return () => {
       monitor.stop();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [componentRef.current, dragDropManager, passedOptions]);
+  }, [componentRef.current, dragDropManager, scrollingOptions]);
 }
 
 export default function withScrolling(WrappedComponent) {
@@ -90,7 +90,7 @@ export default function withScrolling(WrappedComponent) {
     horizontalStrength,
     onScrollChange,
 
-    ...passedProps
+    ...restProps
   }) {
     const ref = useRef(null);
     useDndScrolling(ref, {
@@ -100,7 +100,7 @@ export default function withScrolling(WrappedComponent) {
       onScrollChange
     });
 
-    return <WrappedComponent {...passedProps} ref={ref} />;
+    return <WrappedComponent {...restProps} ref={ref} />;
   }
 
   ScrollingComponent.displayName = `Scrolling(${getDisplayName(WrappedComponent)})`;
@@ -110,7 +110,6 @@ export default function withScrolling(WrappedComponent) {
     horizontalStrength: PropTypes.func,
     strengthMultiplier: PropTypes.number
   };
-  ScrollingComponent.defaultProps = defaultOptions;
 
   return hoist(ScrollingComponent, WrappedComponent);
 }
