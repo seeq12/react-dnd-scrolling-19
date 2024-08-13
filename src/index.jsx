@@ -83,7 +83,7 @@ export function useDndScrolling(componentRef, passedOptions) {
   }, [componentRef.current, dragDropManager, passedOptions]);
 }
 
-export default function createScrollingComponent(WrappedComponent) {
+export default function withScrolling(WrappedComponent) {
   function ScrollingComponent({
     strengthMultiplier,
     verticalStrength,
