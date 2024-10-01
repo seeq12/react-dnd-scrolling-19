@@ -85,10 +85,10 @@ export function useDndScrolling(componentRef, scrollingOptions) {
 
 export default function withScrolling(WrappedComponent) {
   function ScrollingComponent({
-    strengthMultiplier,
-    verticalStrength,
-    horizontalStrength,
-    onScrollChange,
+    onScrollChange = defaultOptions.onScrollChange,
+    verticalStrength = defaultOptions.verticalStrength,
+    horizontalStrength = defaultOptions.horizontalStrength,
+    strengthMultiplier = defaultOptions.strengthMultiplier,
 
     ...restProps
   }) {
