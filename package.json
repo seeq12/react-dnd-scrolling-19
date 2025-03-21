@@ -1,6 +1,6 @@
 {
   "name": "react-dnd-scrolling",
-  "version": "1.3.10",
+  "version": "0.0.1",
   "description": "A cross browser solution to scrolling during drag and drop.",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -19,10 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/TechStark/react-dnd-scrolling"
-  },
-  "bugs": {
-    "url": "http://github.com/TechStark/react-dnd-scrolling/issues"
+    "url": "https://github.com/seeq12/react-dnd-scrolling-19"
   },
   "keywords": [
     "react",
