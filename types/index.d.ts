@@ -41,5 +41,6 @@ export default function withScrolling<
     verticalStrength?: StrengthFunction;
     horizontalStrength?: StrengthFunction;
     dragDropManager?: DragDropManager;
+    refSetter?: (element: any) => void;
   }
 >;

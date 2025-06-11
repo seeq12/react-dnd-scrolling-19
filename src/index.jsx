@@ -58,7 +58,8 @@ const defaultOptions = {
   onScrollChange: noop,
   verticalStrength: defaultVerticalStrength,
   horizontalStrength: defaultHorizontalStrength,
-  strengthMultiplier: 30
+  strengthMultiplier: 30,
+  refSetter: noop,
 };
 
 export function useDndScrolling(componentRef, scrollingOptions) {
@@ -89,7 +90,7 @@ export default function withScrolling(WrappedComponent) {
     verticalStrength = defaultOptions.verticalStrength,
     horizontalStrength = defaultOptions.horizontalStrength,
     strengthMultiplier = defaultOptions.strengthMultiplier,
-
+    refSetter = defaultOptions.refSetter,
     ...restProps
   }) {
     const ref = useRef(null);
@@ -100,7 +101,10 @@ export default function withScrolling(WrappedComponent) {
       onScrollChange
     });
 
-    return <WrappedComponent {...restProps} ref={ref} />;
+    return <WrappedComponent {...restProps} ref={(element) => {
+      refSetter(element);
+      ref.current = element;
+    }} />;
   }
 
   ScrollingComponent.displayName = `Scrolling(${getDisplayName(WrappedComponent)})`;
